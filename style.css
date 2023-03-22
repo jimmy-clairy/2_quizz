@@ -1,0 +1,117 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6em;
+  min-height: 100vh;
+  background: linear-gradient(to right, #ffffff, #70abfd);
+  font-family: sans-serif;
+}
+
+h1 {
+  margin: 3rem 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 2.5rem;
+}
+
+@media (min-width:500px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+h1 span {
+  font-weight: bold;
+  color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+h1 span:nth-child(1) {
+  background: rgb(255, 115, 0);
+}
+
+h1 span:nth-child(2) {
+  background: rgb(38, 38, 228);
+}
+
+h1 span:nth-child(3) {
+  background: rgb(215, 197, 0);
+}
+
+.question-block {
+  background: #f1f1f1;
+  width: 90%;
+  max-width: 60rem;
+  margin: 2rem auto;
+  padding: 2rem 3rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+h4 {
+  margin-bottom: 1.5rem;
+}
+
+input[type="radio"] {
+  margin-bottom: 1.5rem;
+}
+
+button {
+  display: block;
+  margin: auto;
+  min-width: 20rem;
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.results {
+  background: #f1f1f1;
+  max-width: 60rem;
+  width: 90%;
+  padding: 1rem;
+  margin: 2rem auto;
+  border-radius: 0.5rem;
+  text-align: center;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.mark {
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.goodResponse {
+  background: linear-gradient(to right, #a8ff78, #78ffd6);
+}
+
+.wrongResponse {
+  background: linear-gradient(to right, #ff7e9c, #ff806a);
+  animation: slideWrong 0.1s ease-in-out 5;
+}
+
+@keyframes slideWrong {
+  from {
+    transform: translateX(-0.5rem);
+  }
+
+  to {
+    transform: translateX(0.5rem);
+  }
+}
