@@ -1,11 +1,9 @@
-const responses = ["b", "a", "b", "a", "c"];
+const responses = ["b", "a", "b", "a", "c", "b", "c", "b", "b", "a"];
 const emojis = ["👎", "😭", "👀", "✨", "✔️", "🎉"];
 const color = ["red", "orange", "purple", "blue", "yellowgreen", "green"];
 
 const form = document.querySelector('form')
-const inputs = document.querySelectorAll('input[type="radio"]')
 const questionBlock = document.querySelectorAll('.question-block')
-const [titleResult, mark] = document.querySelectorAll('.results p')
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -14,11 +12,8 @@ form.addEventListener('submit', (e) => {
 
 function resultQuestion() {
     const results = []
-    for (const input of inputs) {
-        if (input.checked) {
-            results.push(input.value)
-        }
-    }
+    const allChecked = document.querySelectorAll('input[type="radio"]:checked')
+    allChecked.forEach((c) => results.push(c.value))
     return results
 }
 
@@ -42,8 +37,19 @@ function compareResponse() {
     showResult(score)
 }
 
+const [titleResult, mark] = document.querySelectorAll('.results p')
+
 function showResult(score) {
+    let scoreMore5 = (Math.round(score / 2))
+
     titleResult.textContent = score === responses.length ? '🥳 Youpi 🥳' : 'Retentez votre chance'
-    mark.textContent = `${emojis.at(score)} Vous avez ${score}/${responses.length} bonne reponse ${emojis.at(score)}`
-    mark.style.color = color.at(score)
+    mark.textContent = `${emojis[scoreMore5]} Vous avez ${score}/${responses.length} bonne reponse ${emojis[scoreMore5]}`
+    mark.style.color = color.at(scoreMore5)
 }
+
+// RESET COLOR BACKGROUND
+const radioInputs = document.querySelectorAll('input[type="radio"]')
+
+radioInputs.forEach(radioInput => radioInput.addEventListener('input', () => {
+    radioInput.parentNode.parentNode.classList.remove("goodResponse", "wrongResponse")
+}))

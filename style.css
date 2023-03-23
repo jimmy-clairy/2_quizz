@@ -25,12 +25,6 @@ h1 {
   font-size: 2.5rem;
 }
 
-@media (min-width:500px) {
-  h1 {
-    font-size: 3.5rem;
-  }
-}
-
 h1 span {
   font-weight: bold;
   color: #ffffff;
@@ -53,19 +47,33 @@ h1 span:nth-child(3) {
 .question-block {
   background: #f1f1f1;
   width: 90%;
-  max-width: 60rem;
+  max-width: 70rem;
   margin: 2rem auto;
-  padding: 2rem 3rem 1rem;
+  padding: 2rem 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
-h4 {
-  margin-bottom: 1.5rem;
+.question-block>div {
+  display: flex;
+  align-items: center;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+label,
+input {
+  cursor: pointer;
+  font-size: 1.8rem;
 }
 
 input[type="radio"] {
-  margin-bottom: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.5rem 1rem 0.5rem 0;
 }
 
 button {
@@ -77,7 +85,7 @@ button {
   cursor: pointer;
   border-radius: 0.5rem;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
-  background: #bed9ff;
+  background: #e4efff;
   font-weight: bold;
   font-size: 2rem;
 }
@@ -92,42 +100,22 @@ button:hover {
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
-  max-width: 60rem;
-  width: 90%;
+  max-width: 70rem;
+  width: 100%;
   padding: 1rem 0.5rem;
   margin: 1.5rem auto;
-  border-radius: 0.5rem;
   text-align: center;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 .help {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .mark {
+  font-size: 1.6rem;
   margin-top: 0.5rem;
   font-weight: bold;
-}
-
-@media (min-width:370px) {
-  .help {
-    font-size: 2.4rem;
-  }
-
-  .mark {
-    font-size: 1.8rem;
-  }
-}
-
-@media (min-width:420px) {
-  .help {
-    font-size: 2.6rem;
-  }
-
-  .mark {
-    font-size: 2rem;
-  }
 }
 
 .goodResponse {
@@ -146,5 +134,41 @@ button:hover {
 
   to {
     transform: translateX(0.5rem);
+  }
+}
+
+@media (min-width:370px) {
+  .help {
+    font-size: 2.2rem;
+  }
+
+  .mark {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width:420px) {
+  .help {
+    font-size: 2.4rem;
+  }
+
+  .mark {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width:500px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  .mark {
+    font-size: 2.4rem;
+  }
+}
+
+@media (min-width:700px) {
+  .results {
+    border-radius: 0.5rem;
   }
 }
