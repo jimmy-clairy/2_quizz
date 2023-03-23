@@ -1,12 +1,11 @@
-const responses = ["b", "a", "b", "a", "c", "b"];
-const emojis = ["🎉", "✔️", "✨", "👀", "😭", "👎"];
-const color = ["green", "yellowgreen", "blue", "purple", "orange", "red"]
+const responses = ["b", "a", "b", "a", "c"];
+const emojis = ["👎", "😭", "👀", "✨", "✔️", "🎉"];
+const color = ["red", "orange", "purple", "blue", "yellowgreen", "green"];
 
 const form = document.querySelector('form')
 const inputs = document.querySelectorAll('input[type="radio"]')
 const questionBlock = document.querySelectorAll('.question-block')
-const titleResult = document.querySelector('.results h2')
-const [mark, help] = document.querySelectorAll('.results p')
+const [titleResult, mark] = document.querySelectorAll('.results p')
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -40,8 +39,11 @@ function compareResponse() {
         }
         i++
     }
+    showResult(score)
+}
 
-    titleResult.textContent = score === responses.length ? '🥳 Youpi 🥳' : 'Retentez une autre réponse dans la case rouge, puis re-validez !'
-    mark.textContent = `${emojis.at(-score)} Vous avez ${score}/${responses.length} bonne reponse ${emojis.at(-score)}`
-    mark.style.color = color.at(-score)
+function showResult(score) {
+    titleResult.textContent = score === responses.length ? '🥳 Youpi 🥳' : 'Retentez votre chance'
+    mark.textContent = `${emojis.at(score)} Vous avez ${score}/${responses.length} bonne reponse ${emojis.at(score)}`
+    mark.style.color = color.at(score)
 }

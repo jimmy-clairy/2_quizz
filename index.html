@@ -2,10 +2,10 @@
 <html lang="fr">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quizz JS</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
 
@@ -23,17 +23,17 @@
         <h4>Quelle propriété CSS est utilisée pour définir la couleur de fond d'un élément ?</h4>
 
         <div>
-          <input type="radio" id="q1-1" name="q1" value="a" checked />
+          <input type="radio" id="q1-1" name="q1" value="a" checked>
           <label for="q1-1">color</label>
         </div>
 
         <div>
-          <input type="radio" id="q1-2" name="q1" value="b" />
+          <input type="radio" id="q1-2" name="q1" value="b">
           <label for="q1-2">background-color</label>
         </div>
 
         <div>
-          <input type="radio" id="q1-3" name="q1" value="c" />
+          <input type="radio" id="q1-3" name="q1" value="c">
           <label for="q1-3">font-family</label>
         </div>
       </div>
@@ -41,17 +41,17 @@
       <div class="question-block">
         <h4>Quelle est la fonction JavaScript utilisée pour ajouter un élément à une page web ?</h4>
         <div>
-          <input type="radio" id="q2-1" name="q2" value="a" checked />
+          <input type="radio" id="q2-1" name="q2" value="a" checked>
           <label for="q2-1">document.createElement()</label>
         </div>
 
         <div>
-          <input type="radio" id="q2-2" name="q2" value="b" />
+          <input type="radio" id="q2-2" name="q2" value="b">
           <label for="q2-2">document.getElementById()</label>
         </div>
 
         <div>
-          <input type="radio" id="q2-3" name="q2" value="c" />
+          <input type="radio" id="q2-3" name="q2" value="c">
           <label for="q2-3">document.querySelector()</label>
         </div>
       </div>
@@ -59,17 +59,17 @@
       <div class="question-block">
         <h4>Quelle propriété CSS est utilisée pour définir la taille de police d'un texte ?</h4>
         <div>
-          <input type="radio" id="q3-1" name="q3" value="a" checked />
+          <input type="radio" id="q3-1" name="q3" value="a" checked>
           <label for="q3-1">font-weight</label>
         </div>
 
         <div>
-          <input type="radio" id="q3-2" name="q3" value="b" />
+          <input type="radio" id="q3-2" name="q3" value="b">
           <label for="q3-2">font-size</label>
         </div>
 
         <div>
-          <input type="radio" id="q3-3" name="q3" value="c" />
+          <input type="radio" id="q3-3" name="q3" value="c">
           <label for="q3-3">text-decoration</label>
         </div>
       </div>
@@ -78,17 +78,17 @@
         <h4>Quelle est la méthode JavaScript utilisée pour ajouter un événement à un élément ?</h4>
 
         <div>
-          <input type="radio" id="q4-1" name="q4" value="a" checked />
+          <input type="radio" id="q4-1" name="q4" value="a" checked>
           <label for="q4-1">addEventListener()</label>
         </div>
 
         <div>
-          <input type="radio" id="q4-2" name="q4" value="b" />
+          <input type="radio" id="q4-2" name="q4" value="b">
           <label for="q4-2">createElement()</label>
         </div>
 
         <div>
-          <input type="radio" id="q4-3" name="q4" value="c" />
+          <input type="radio" id="q4-3" name="q4" value="c">
           <label for="q4-3">getElementById()</label>
         </div>
       </div>
@@ -96,46 +96,27 @@
       <div class="question-block">
         <h4>Quelle est la fonction JavaScript utilisée pour modifier le contenu d'un élément HTML ?</h4>
         <div>
-          <input type="radio" id="q5-1" name="q5" value="a" checked />
+          <input type="radio" id="q5-1" name="q5" value="a" checked>
           <label for="q5-1">document.createElement()</label>
         </div>
 
         <div>
-          <input type="radio" id="q5-2" name="q5" value="b" />
+          <input type="radio" id="q5-2" name="q5" value="b">
           <label for="q5-2">document.getElementById()</label>
         </div>
 
         <div>
-          <input type="radio" id="q5-3" name="q5" value="c" />
+          <input type="radio" id="q5-3" name="q5" value="c">
           <label for="q5-3">innerHTML()</label>
         </div>
       </div>
-      <div class="question-block">
-        <h4>Quel est le résultat de l'opération suivante en JavaScript : "3" + 2 ?</h4>
-        <div>
-          <input type="radio" id="q6-1" name="q6" value="a" checked />
-          <label for="q6-1">5</label>
-        </div>
 
-        <div>
-          <input type="radio" id="q6-2" name="q6" value="b" />
-          <label for="q6-2">"32"</label>
-        </div>
-
-        <div>
-          <input type="radio" id="q6-3" name="q6" value="c" />
-          <label for="q6-3">"3+2"</label>
-        </div>
+      <div class="results">
+        <button type="submit">VALIDER ✅</button>
+        <p class="help">Cliquez sur valider pour voir les résultats.</p>
+        <p class="mark"></p>
       </div>
-
-      <button type="submit">VALIDER ✅</button>
     </form>
-
-    <div class="results">
-      <h2>Cliquez sur <span>valider</span> pour voir les <span>résultats.</span></h2>
-      <p class="mark"></p>
-      <p class="help"></p>
-    </div>
 
   </div>
 </body>
