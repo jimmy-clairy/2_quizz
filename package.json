@@ -1,0 +1,21 @@
+{
+  "name": "2_quizz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prefix": "postcss ./css/style.css --use autoprefixer -d ./css/prefixed/"
+  },
+  "browserslist": "last 4 versions",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimmy-clairy/2_quizz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jimmy-clairy/2_quizz/issues"
+  },
+  "homepage": "https://github.com/jimmy-clairy/2_quizz#readme"
+}
