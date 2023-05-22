@@ -11,15 +11,27 @@ modalForm.addEventListener("submit", (e) => {
     const numberOfQuestion = Number(document.getElementById("numberOfQuestion").value)
     const quizForm = document.getElementById("quiz__form")
 
+    /** Check if number of questions is more to two */
     if (numberOfQuestion > 1) {
         const modal = document.querySelector(".modal")
         modal.style.display = "none"
 
+        const arrayQuestionRandom = []
         for (let i = 0; i < numberOfQuestion; i++) {
-            quizForm.append(createQuestion(i, dataQuestions))
+            let randomQuestion = getRandomInt(dataQuestions.length)
+
+            /** Finds if there is the same random question then replaces for an other */
+            const foundSameQuestion = arrayQuestionRandom.find(e => e === randomQuestion)
+            if (foundSameQuestion) {
+                // console.log('Found ' + foundSameQuestion);
+                randomQuestion = getRandomInt(dataQuestions.length)
+            }
+            arrayQuestionRandom.push(randomQuestion)
+
+            quizForm.append(createQuestion(i, dataQuestions[randomQuestion]))
         }
 
-        // RESET COLOR BACKGROUND
+        /** Reset color background */
         const radioInputs = document.querySelectorAll('input[type="radio"]')
         radioInputs.forEach(radioInput => radioInput.addEventListener('input', () => {
             radioInput.parentNode.parentNode.classList.remove("goodResponse", "wrongResponse")
@@ -30,25 +42,23 @@ modalForm.addEventListener("submit", (e) => {
 /**
  * Create one question
  * @param {number} numberOfTheQuestion 
- * @param {object} dataQuestions 
+ * @param {object} dataQuestion 
  * @returns {HTMLDivElement}
  */
-function createQuestion(numberOfTheQuestion, dataQuestions) {
-    const randomQuestion = getRandomInt(dataQuestions.length)
-
+function createQuestion(numberOfTheQuestion, dataQuestion) {
     const questionBlock = document.createElement("div")
     questionBlock.setAttribute("class", "question__block")
-    questionBlock.setAttribute("data-response", dataQuestions[randomQuestion].goodResponse)
+    questionBlock.setAttribute("data-response", dataQuestion.goodResponse)
 
     const questionTitle = document.createElement("h2")
     questionTitle.setAttribute("class", "question__heading")
-    questionTitle.innerText = dataQuestions[randomQuestion].question
+    questionTitle.innerText = dataQuestion.question
 
     questionBlock.append(questionTitle)
 
     /** Create input response */
     let numberResponse = 1
-    for (const [key, value] of Object.entries(dataQuestions[randomQuestion].response)) {
+    for (const [key, value] of Object.entries(dataQuestion.response)) {
         const responseBlock = document.createElement("div")
 
         const inputResponse = document.createElement("input")
@@ -78,9 +88,19 @@ function getRandomInt(max) {
 }
 
 const form = document.getElementById('quiz__form')
+let tentative = 0
 form.addEventListener('submit', (e) => {
+    tentative++
     e.preventDefault()
     compareResponse()
+    const h3 = document.querySelector('.modal.win h3')
+    let winString = ""
+    if (tentative === 1) {
+        winString = `<span style="color: goldenrod;">🎊 Vous étes un champion 🎊<br>vous avez reussi avec 1 seule tentative</span>`
+    } else {
+        winString = `<span>😉 Avec ${tentative} tentatives 😉<br> vous pouvez mieux faire</span>`
+    }
+    h3.innerHTML = `😁 Bravo vous avez gagné 😁<br><br>${winString}<br><br>Voulez-vous recommencer un nouveau quiz ?`
 })
 
 /**
@@ -93,6 +113,7 @@ function resultQuestion() {
     allChecked.forEach((c) => results.push(c.value))
     return results
 }
+
 /**
  * Return an array with the responses
  * @returns {string[]}
@@ -104,6 +125,7 @@ function goodResponses() {
     return responses
 }
 
+/** Compare response */
 function compareResponse() {
     const questionBlocks = document.querySelectorAll(".question__block")
     const results = resultQuestion()

@@ -83,6 +83,11 @@ h1 span:nth-child(3) {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+.modal input {
+  text-align: center;
+  font-weight: 700;
+}
+
 .modal__container {
   position: relative;
   display: flex;
@@ -95,13 +100,13 @@ h1 span:nth-child(3) {
   background-color: #ffffff;
   width: 95%;
   max-width: 60rem;
-  padding: 5rem 3rem;
+  padding: 5rem 1rem;
 }
 
 .modal__X {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.5rem;
+  right: 0.5rem;
   background-color: #ff7e9c;
   padding: 0.5rem 1rem;
   border-radius: 5px;
