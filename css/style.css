@@ -12,14 +12,42 @@ html {
 
 body {
   font-size: 1.6em;
-  background: linear-gradient(to right, #ffffff, #70abfd);
   font-family: sans-serif;
-  padding-bottom: 14rem;
+}
+
+.bg {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: url('../img/bg_3_mobile.webp');
+  background-position: center;
+  background-size: cover;
+  animation: bgColor 5s infinite linear;
+}
+
+@media screen and (min-width:425px) {
+  .bg {
+    background: url('../img/bg_3_desktop.webp');
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+@keyframes bgColor {
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 
 h1 {
-  margin: 3rem 0;
+  margin: 3rem auto;
+  padding: 1.5rem 1rem;
+  border-radius: 5px;
   text-align: center;
+  color: #fff;
+  background-color: #000;
+  max-width: fit-content;
   font-weight: 400;
   font-size: clamp(2.5rem, 8vw, 3.5rem);
 }
@@ -52,7 +80,7 @@ h1 span:nth-child(3) {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(61, 61, 61, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modal__container {
@@ -89,6 +117,12 @@ h1 span:nth-child(3) {
 
 .win {
   display: none;
+}
+
+.main {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 15rem;
 }
 
 .question__block {

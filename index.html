@@ -12,53 +12,55 @@
 </head>
 
 <body>
+  <div class="bg"></div>
+  <main class="main">
+    <h1>
+      Quiz
+      <span>Html</span>, <span>CSS</span> et <span>JS</span>.
+    </h1>
 
-  <h1>
-    Quiz
-    <span>Html</span>, <span>CSS</span> et <span>JS</span>.
-  </h1>
+    <div class="modal">
+      <form class="modal__container">
+        <label for="numberOfQuestion">Choisissez le nombre de questions entre 2 et 10.</label>
+        <input type="number" name="numberOfQuestion" id="numberOfQuestion" min="2" max="10" value="2" autofocus>
+        <button class="btn">Valider</button>
+      </form>
+    </div>
 
-  <div class="modal">
-    <form class="modal__container">
-      <label for="numberOfQuestion">Choisissez le nombre de question entre 2 et 10</label>
-      <input type="number" name="numberOfQuestion" id="numberOfQuestion" min="2" max="10" value="2" autofocus>
-      <button class="btn">Valider</button>
+    <div class="modal win">
+      <div class="modal__container">
+        <div class="modal__X">X</div>
+        <h3>Vous avez gagné voulez-vous recommencer un nouveau quiz ?</h3>
+        <button class="btn">Recommencer</button>
+      </div>
+    </div>
+
+    <form id="quiz__form">
+      <!-- QUESTION 1 -->
+      <!-- <div class="question-block">
+          <h2>Quelle est la fonction JavaScript utilisée pour ajouter un élément à une page web ?</h2>
+          <div>
+            <input type="radio" id="q2-1" name="q2" value="a" checked>
+            <label for="q2-1">document.createElement()</label>
+          </div>
+  
+          <div>
+            <input type="radio" id="q2-2" name="q2" value="b">
+            <label for="q2-2">document.getElementById()</label>
+          </div>
+  
+          <div>
+            <input type="radio" id="q2-3" name="q2" value="c">
+            <label for="q2-3">document.querySelector()</label>
+          </div>
+        </div> -->
+      <div class="result">
+        <button class="btn" type="submit">VALIDER ✅</button>
+        <p class="result__help">Cliquez sur valider pour voir les résultats.</p>
+        <p class="result__mark"></p>
+      </div>
     </form>
-  </div>
-
-  <div class="modal win">
-    <div class="modal__container">
-      <div class="modal__X">X</div>
-      <h3>Vous avez gagner voulez-vous recommencer un nouveau quiz ?</h3>
-      <button class="btn">Recommencer</button>
-    </div>
-  </div>
-
-  <form id="quiz__form">
-    <!-- QUESTION 1 -->
-    <!-- <div class="question-block">
-        <h2>Quelle est la fonction JavaScript utilisée pour ajouter un élément à une page web ?</h2>
-        <div>
-          <input type="radio" id="q2-1" name="q2" value="a" checked>
-          <label for="q2-1">document.createElement()</label>
-        </div>
-
-        <div>
-          <input type="radio" id="q2-2" name="q2" value="b">
-          <label for="q2-2">document.getElementById()</label>
-        </div>
-
-        <div>
-          <input type="radio" id="q2-3" name="q2" value="c">
-          <label for="q2-3">document.querySelector()</label>
-        </div>
-      </div> -->
-    <div class="result">
-      <button class="btn" type="submit">VALIDER ✅</button>
-      <p class="result__help">Cliquez sur valider pour voir les résultats.</p>
-      <p class="result__mark"></p>
-    </div>
-  </form>
+  </main>
 </body>
 
 </html>
