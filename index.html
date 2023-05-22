@@ -18,31 +18,25 @@
     <span>Html</span>, <span>CSS</span> et <span>JS</span>.
   </h1>
 
-  <div class="global-container">
+  <div class="modal">
+    <form class="modal__container">
+      <label for="numberOfQuestion">Choisissez le nombre de question entre 2 et 10</label>
+      <input type="number" name="numberOfQuestion" id="numberOfQuestion" min="2" max="10" value="2" autofocus>
+      <button class="btn">Valider</button>
+    </form>
+  </div>
+
+  <div class="modal win">
+    <div class="modal__container">
+      <div class="modal__X">X</div>
+      <h3>Vous avez gagner voulez-vous recommencer un nouveau quiz ?</h3>
+      <button class="btn">Recommencer</button>
+    </div>
+  </div>
+
+  <form id="quiz__form">
     <!-- QUESTION 1 -->
-    <form id="quiz-form">
-      <template id="question-tmp">
-        <div class="question-block">
-          <h2></h2>
-          <div>
-            <input type="radio" id="q1-1" name="q1" value="a" checked>
-            <label for="q1-1"></label>
-          </div>
-
-          <div>
-            <input type="radio" id="q1-2" name="q1" value="b">
-            <label for="q1-2"></label>
-          </div>
-
-          <div>
-            <input type="radio" id="q1-3" name="q1" value="c">
-            <label for="q1-3"></label>
-          </div>
-        </div>
-      </template>
-
-      <!-- QUESTION 2 -->
-      <!-- <div class="question-block">
+    <!-- <div class="question-block">
         <h2>Quelle est la fonction JavaScript utilisée pour ajouter un élément à une page web ?</h2>
         <div>
           <input type="radio" id="q2-1" name="q2" value="a" checked>
@@ -59,15 +53,12 @@
           <label for="q2-3">document.querySelector()</label>
         </div>
       </div> -->
-
-      <div class="results">
-        <button type="submit">VALIDER ✅</button>
-        <p class="help">Cliquez sur valider pour voir les résultats.</p>
-        <p class="mark"></p>
-      </div>
-    </form>
-
-  </div>
+    <div class="result">
+      <button class="btn" type="submit">VALIDER ✅</button>
+      <p class="result__help">Cliquez sur valider pour voir les résultats.</p>
+      <p class="result__mark"></p>
+    </div>
+  </form>
 </body>
 
 </html>

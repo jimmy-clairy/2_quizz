@@ -1,54 +1,67 @@
-async function fetchData() {
-    const res = await fetch("../db/data.json")
-    if (res.ok) {
-        return await res.json()
+const res = await fetch("./db/data.json")
+if (res.ok !== true) {
+    throw new Error("Impossible de contacter data.json")
+}
+const dataQuestions = await res.json()
+
+const modalForm = document.querySelector("form.modal__container")
+modalForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+    const numberOfQuestion = Number(document.getElementById("numberOfQuestion").value)
+    const quizForm = document.getElementById("quiz__form")
+
+    if (numberOfQuestion > 1) {
+        const modal = document.querySelector(".modal")
+        modal.style.display = "none"
+
+        for (let i = 0; i < numberOfQuestion; i++) {
+            quizForm.append(createQuestion(i, dataQuestions))
+        }
+
+        // RESET COLOR BACKGROUND
+        const radioInputs = document.querySelectorAll('input[type="radio"]')
+        radioInputs.forEach(radioInput => radioInput.addEventListener('input', () => {
+            radioInput.parentNode.parentNode.classList.remove("goodResponse", "wrongResponse")
+        }))
     }
-    throw new Error("Impossible de contactez le serveur")
-}
+})
 
-const dataQuestions = await fetchData()
-console.log(dataQuestions);
-
-const numberOfQuestion = Number(prompt("Nombre question max 10"))
-/** Create Number Random */
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
-console.log(dataQuestions.length);
-console.log(getRandomInt(dataQuestions.length));
-const goodResponses = []
-
-const quizForm = document.getElementById("quiz-form")
-
-let numberQuestion = 1
-for (let i = 0; i < numberOfQuestion; i++) {
+/**
+ * Create one question
+ * @param {number} numberOfTheQuestion 
+ * @param {object} dataQuestions 
+ * @returns {HTMLDivElement}
+ */
+function createQuestion(numberOfTheQuestion, dataQuestions) {
     const randomQuestion = getRandomInt(dataQuestions.length)
 
-
     const questionBlock = document.createElement("div")
-    questionBlock.setAttribute("class", "question-block")
+    questionBlock.setAttribute("class", "question__block")
+    questionBlock.setAttribute("data-response", dataQuestions[randomQuestion].goodResponse)
+
     const questionTitle = document.createElement("h2")
+    questionTitle.setAttribute("class", "question__heading")
     questionTitle.innerText = dataQuestions[randomQuestion].question
 
-    quizForm.append(questionBlock)
     questionBlock.append(questionTitle)
 
-    /** Create input */
+    /** Create input response */
     let numberResponse = 1
     for (const [key, value] of Object.entries(dataQuestions[randomQuestion].response)) {
         const responseBlock = document.createElement("div")
 
         const inputResponse = document.createElement("input")
         inputResponse.setAttribute("type", "radio")
-        inputResponse.setAttribute("id", `q${numberQuestion}-${numberResponse}`)
-        inputResponse.setAttribute("name", `q${numberQuestion}`)
+        inputResponse.setAttribute("id", `q${numberOfTheQuestion}-${numberResponse}`)
+        inputResponse.setAttribute("name", `q${numberOfTheQuestion}`)
         inputResponse.setAttribute("value", key)
         if (numberResponse === 1) {
             inputResponse.setAttribute("checked", "")
         }
 
         const labelResponse = document.createElement("label")
-        labelResponse.setAttribute("for", `q${numberQuestion}-${numberResponse}`)
+        labelResponse.setAttribute("for", `q${numberOfTheQuestion}-${numberResponse}`)
         labelResponse.innerText = value
 
         questionBlock.append(responseBlock)
@@ -56,38 +69,52 @@ for (let i = 0; i < numberOfQuestion; i++) {
 
         numberResponse++
     }
-    goodResponses.push(dataQuestions[randomQuestion].goodResponse)
-
-    numberQuestion++
+    return questionBlock
 }
 
-const form = document.querySelector('form')
+/** Create Number Random */
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+const form = document.getElementById('quiz__form')
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    console.log(resultQuestion());
-    console.log(goodResponses);
     compareResponse()
 })
 
+/**
+ * Return an array with questions result
+ * @returns {string[]}
+ */
 function resultQuestion() {
     const results = []
     const allChecked = document.querySelectorAll('input[type="radio"]:checked')
     allChecked.forEach((c) => results.push(c.value))
     return results
 }
-
-// const emojis = ["👎", "😭", "👀", "✨", "✔️", "🎉"];
-// const color = ["red", "orange", "purple", "blue", "yellowgreen", "green"];
+/**
+ * Return an array with the responses
+ * @returns {string[]}
+ */
+function goodResponses() {
+    const responses = []
+    const questionBlocks = document.querySelectorAll(".question__block")
+    questionBlocks.forEach((q) => responses.push(q.dataset.response))
+    return responses
+}
 
 function compareResponse() {
+    const questionBlocks = document.querySelectorAll(".question__block")
     const results = resultQuestion()
-    const questionBlocks = document.querySelectorAll(".question-block")
+    const responses = goodResponses()
+
     let i = 0;
     let score = 0;
 
     for (const result of results) {
 
-        if (result === goodResponses[i]) {
+        if (result === responses[i]) {
             questionBlocks[i].classList.remove("wrongResponse")
             questionBlocks[i].classList.add("goodResponse")
             score++
@@ -97,19 +124,52 @@ function compareResponse() {
         }
         i++
     }
-    showResult(score)
+    showResult(score, responses)
 }
 
-const [titleResult, mark] = document.querySelectorAll('.results p')
+/**
+ * Show the result
+ * @param {number} score 
+ * @param {string[]} responses 
+ */
+function showResult(score, responses) {
+    const result = document.querySelector('.result')
+    const [titleResult, mark] = document.querySelectorAll('.result p')
 
-function showResult(score) {
-    titleResult.textContent = score === goodResponses.length ? '🥳 Youpi 🥳' : 'Retentez votre chance'
-    mark.textContent = `Vous avez ${score}/${goodResponses.length} bonne reponse`
+    const emojis = ["👎", "😭", "👀", "✨", "🎉"];
+    let emoji = ""
+    const resultInPercentages = (score / responses.length) * 100
+    if (resultInPercentages < 25) {
+        result.style.background = 'lightcoral'
+        emoji = emojis[0]
+    } else if (resultInPercentages < 50) {
+        result.style.background = 'lightsalmon'
+        emoji = emojis[1]
+    } else if (resultInPercentages < 75) {
+        result.style.background = 'lightskyblue'
+        emoji = emojis[2]
+    } else if (resultInPercentages < 100) {
+        result.style.background = 'lightyellow'
+        emoji = emojis[3]
+    } else {
+        result.style.background = 'lightgreen'
+        emoji = emojis[4]
+        modalReload()
+    }
+
+    titleResult.textContent = score === responses.length ? '🥳 Youpi 🥳' : 'Retentez votre chance'
+    mark.textContent = `${emoji}Vous avez ${score}/${responses.length} bonne reponse${emoji}`
 }
 
-// RESET COLOR BACKGROUND
-const radioInputs = document.querySelectorAll('input[type="radio"]')
-
-radioInputs.forEach(radioInput => radioInput.addEventListener('input', () => {
-    radioInput.parentNode.parentNode.classList.remove("goodResponse", "wrongResponse")
-}))
+function modalReload() {
+    const modal = document.querySelector('.modal.win')
+    const btnX = modal.querySelector('.modal__X')
+    btnX.addEventListener('click', () => {
+        modal.style.display = 'none'
+    })
+    const btnReload = modal.querySelector('button')
+    btnReload.addEventListener('click', () => {
+        location.reload()
+    })
+    modal.style.display = 'flex';
+}

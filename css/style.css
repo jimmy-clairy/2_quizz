@@ -12,7 +12,6 @@ html {
 
 body {
   font-size: 1.6em;
-  min-height: 100vh;
   background: linear-gradient(to right, #ffffff, #70abfd);
   font-family: sans-serif;
   padding-bottom: 14rem;
@@ -44,7 +43,55 @@ h1 span:nth-child(3) {
   background: #d7c500;
 }
 
-.question-block {
+.modal {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(61, 61, 61, 0.5);
+}
+
+.modal__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  border-radius: 5px;
+  background-color: #ffffff;
+  width: 95%;
+  max-width: 60rem;
+  padding: 5rem 3rem;
+}
+
+.modal__X {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #ff7e9c;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 900;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal__X:hover {
+  background-color: #ff3c6a;
+}
+
+.win {
+  display: none;
+}
+
+.question__block {
   background: #fff;
   width: 90%;
   max-width: 70rem;
@@ -54,26 +101,14 @@ h1 span:nth-child(3) {
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
-.question-block>div {
+.question__block>div {
   display: flex;
   align-items: center;
 }
 
-h2 {
+.question__heading {
   margin-bottom: 1rem;
   font-size: 1.8rem;
-}
-
-.html {
-  color: rgb(255, 115, 0);
-}
-
-.js {
-  color: rgb(215, 197, 0);
-}
-
-.css {
-  color: rgb(38, 38, 228)
 }
 
 label,
@@ -88,7 +123,7 @@ input[type="radio"] {
   margin: 0.5rem 1rem 0.5rem 0;
 }
 
-button {
+.btn {
   display: block;
   margin: 0 auto 1rem;
   min-width: 20rem;
@@ -103,12 +138,13 @@ button {
   transition: .3s;
 }
 
-button:hover {
+.btn:hover {
   background: #75afff;
 }
 
-.results {
+.result {
   position: fixed;
+  z-index: 5;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -122,16 +158,16 @@ button:hover {
 }
 
 @media (min-width:700px) {
-  .results {
+  .result {
     border-radius: 0.5rem;
   }
 }
 
-.help {
+.result__help {
   font-size: clamp(1.8rem, 4vw, 2.4rem);
 }
 
-.mark {
+.result__mark {
   font-size: clamp(1.6rem, 5vw, 2.4rem);
   margin-top: 0.5rem;
   font-weight: bold;

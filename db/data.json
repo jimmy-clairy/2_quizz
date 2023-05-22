@@ -4,30 +4,30 @@
         "response": {
             "a": "color",
             "b": "background-color",
-            "c": "font-family"
+            "c": "couleur"
         },
         "goodResponse": "b"
     },
     {
         "question": "Quelle balise HTML est utilisée pour créer un lien hypertexte ?",
         "response": {
-            "a": "<a>",
+            "a": "<nav>",
             "b": "<link>",
-            "c": "<h1>"
+            "c": "<a>"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quel sélecteur CSS est utilisé pour sélectionner un élément par son ID ?",
         "response": {
-            "a": "#",
-            "b": ".",
-            "c": ":"
+            "a": ".",
+            "b": "#",
+            "c": "&"
         },
-        "goodResponse": "a"
+        "goodResponse": "b"
     },
     {
-        "question": "Comment déclarer une variable en JavaScript ?",
+        "question": "Comment déclarer une constante en JavaScript ?",
         "response": {
             "a": "var",
             "b": "let",
@@ -38,38 +38,38 @@
     {
         "question": "Quelle balise HTML est utilisée pour afficher une image ?",
         "response": {
-            "a": "<img>",
+            "a": "<image>",
             "b": "<div>",
-            "c": "<span>"
+            "c": "<img>"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle est la méthode JavaScript utilisée pour ajouter un élément à la fin d'un tableau ?",
         "response": {
             "a": "push()",
             "b": "pop()",
-            "c": "concat()"
+            "c": "unshift()"
         },
         "goodResponse": "a"
     },
     {
         "question": "Quelle balise HTML est utilisée pour créer un paragraphe ?",
         "response": {
-            "a": "<p>",
-            "b": "<h1>",
-            "c": "<a>"
+            "a": "<paragraph>",
+            "b": "<span>",
+            "c": "<p>"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle propriété CSS est utilisée pour modifier la taille de la police d'un texte ?",
         "response": {
-            "a": "font-size",
-            "b": "text-align",
-            "c": "margin"
+            "a": "height-font",
+            "b": "text-transform",
+            "c": "font-size"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle est la méthode JavaScript utilisée pour supprimer le dernier élément d'un tableau ?",
@@ -110,29 +110,29 @@
     {
         "question": "Quelle balise HTML est utilisée pour créer une liste non ordonnée ?",
         "response": {
-            "a": "<ul>",
-            "b": "<ol>",
+            "a": "<ol>",
+            "b": "<ul>",
             "c": "<li>"
         },
-        "goodResponse": "a"
+        "goodResponse": "b"
     },
     {
         "question": "Quelle est la propriété CSS utilisée pour définir l'espacement entre les lettres d'un texte ?",
         "response": {
             "a": "letter-spacing",
             "b": "line-height",
-            "c": "text-decoration"
+            "c": "text-width"
         },
         "goodResponse": "a"
     },
     {
         "question": "Quelle méthode JavaScript est utilisée pour obtenir la longueur d'une chaîne de caractères ?",
         "response": {
-            "a": "length()",
+            "a": "chartAt()",
             "b": "size()",
-            "c": "charAt()"
+            "c": "length()"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle balise HTML est utilisée pour créer un lien vers une feuille de style externe ?",
@@ -155,20 +155,20 @@
     {
         "question": "Quelle méthode JavaScript est utilisée pour supprimer un élément spécifique d'un tableau ?",
         "response": {
-            "a": "splice()",
+            "a": "concat()",
             "b": "slice()",
-            "c": "concat()"
+            "c": "splice()"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle balise HTML est utilisée pour créer un tableau ?",
         "response": {
-            "a": "<table>",
-            "b": "<div>",
-            "c": "<span>"
+            "a": "<array>",
+            "b": "<table>",
+            "c": "<div>"
         },
-        "goodResponse": "a"
+        "goodResponse": "b"
     },
     {
         "question": "Quelle est la propriété CSS utilisée pour aligner le texte à droite d'un élément ?",
@@ -191,20 +191,20 @@
     {
         "question": "Quelle balise HTML est utilisée pour créer un formulaire ?",
         "response": {
-            "a": "<form>",
-            "b": "<input>",
+            "a": "<input>",
+            "b": "<form>",
             "c": "<label>"
         },
-        "goodResponse": "a"
+        "goodResponse": "b"
     },
     {
         "question": "Quelle est la propriété CSS utilisée pour définir la couleur du texte d'un élément ?",
         "response": {
-            "a": "color",
+            "a": "font-color",
             "b": "background-color",
-            "c": "font-family"
+            "c": "color"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle méthode JavaScript est utilisée pour obtenir l'indice d'un élément dans un tableau ?",
@@ -218,7 +218,7 @@
     {
         "question": "Quelle balise HTML est utilisée pour afficher du texte en italique ?",
         "response": {
-            "a": "<strong>",
+            "a": "<italic>",
             "b": "<em>",
             "c": "<i>"
         },
@@ -245,11 +245,11 @@
     {
         "question": "Quelle balise HTML est utilisée pour insérer du code informatique ?",
         "response": {
-            "a": "<code>",
+            "a": "<c>",
             "b": "<pre>",
-            "c": "<var>"
+            "c": "<code>"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle est la propriété CSS utilisée pour définir la hauteur d'un élément ?",
@@ -272,20 +272,20 @@
     {
         "question": "Quelle balise HTML est utilisée pour définir une ligne horizontale ?",
         "response": {
-            "a": "<hr>",
+            "a": "<line>",
             "b": "<br>",
-            "c": "<line>"
+            "c": "<hr>"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle est la propriété CSS utilisée pour ajouter une ombre à un élément ?",
         "response": {
-            "a": "box-shadow",
-            "b": "text-shadow",
-            "c": "border-shadow"
+            "a": "border-shadow",
+            "b": "box-shadow",
+            "c": "text-shadow"
         },
-        "goodResponse": "a"
+        "goodResponse": "b"
     },
     {
         "question": "Quelle méthode JavaScript est utilisée pour rechercher un élément dans un tableau ?",
@@ -299,7 +299,7 @@
     {
         "question": "Quelle balise HTML est utilisée pour créer une zone de texte multiligne ?",
         "response": {
-            "a": "<input>",
+            "a": "<multi>",
             "b": "<textarea>",
             "c": "<select>"
         },
@@ -317,11 +317,11 @@
     {
         "question": "Quelle balise HTML est utilisée pour insérer du contenu en ligne dans un paragraphe ?",
         "response": {
-            "a": "<span>",
-            "b": "<div>",
+            "a": "<div>",
+            "b": "<span>",
             "c": "<br>"
         },
-        "goodResponse": "a"
+        "goodResponse": "b"
     },
     {
         "question": "Quelle méthode JavaScript est utilisée pour ajouter des éléments à la fin d'un tableau et renvoyer la nouvelle longueur du tableau ?",
@@ -335,8 +335,8 @@
     {
         "question": "Quelle balise HTML est utilisée pour définir un en-tête de tableau ?",
         "response": {
-            "a": "<th>",
-            "b": "<td>",
+            "a": "<td>",
+            "b": "<th>",
             "c": "<tr>"
         },
         "goodResponse": "a"
@@ -398,11 +398,11 @@
     {
         "question": "Quelle est la propriété CSS utilisée pour modifier l'épaisseur de la bordure d'un élément ?",
         "response": {
-            "a": "border-width",
-            "b": "border-style",
+            "a": "border-style",
+            "b": "border-width",
             "c": "border-color"
         },
-        "goodResponse": "a"
+        "goodResponse": "b"
     },
     {
         "question": "Quelle méthode JavaScript est utilisée pour inverser l'ordre des éléments d'un tableau ?",
@@ -443,11 +443,11 @@
     {
         "question": "Quelle balise HTML est utilisée pour insérer une vidéo ?",
         "response": {
-            "a": "<video>",
+            "a": "<source>",
             "b": "<img>",
-            "c": "<source>"
+            "c": "<video>"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle méthode JavaScript est utilisée pour vérifier si une chaîne de caractères contient une autre chaîne ?",
@@ -470,11 +470,11 @@
     {
         "question": "Quelle est la propriété CSS utilisée pour définir l'espacement entre les bordures d'un élément ?",
         "response": {
-            "a": "border-spacing",
+            "a": "margin",
             "b": "padding",
-            "c": "margin"
+            "c": "border-spacing"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle méthode JavaScript est utilisée pour obtenir la partie entière d'un nombre ?",
@@ -506,11 +506,11 @@
     {
         "question": "Quelle méthode JavaScript est utilisée pour obtenir la valeur d'un champ de saisie ?",
         "response": {
-            "a": "value()",
+            "a": "getElementById()",
             "b": "text()",
-            "c": "getElementById()"
+            "c": "value()"
         },
-        "goodResponse": "a"
+        "goodResponse": "c"
     },
     {
         "question": "Quelle balise HTML est utilisée pour définir un lien vers une adresse email ?",
