@@ -30,6 +30,7 @@ modalForm.addEventListener("submit", (e) => {
 
             quizForm.append(createQuestion(i, dataQuestions[randomQuestion]))
         }
+        // console.log(arrayQuestionRandom);
 
         /** Reset color background */
         const radioInputs = document.querySelectorAll('input[type="radio"]')
