@@ -19,8 +19,36 @@
       <span>Html</span>, <span>CSS</span> et <span>JS</span>.
     </h1>
 
-    <div class="modal">
-      <form class="modal__container">
+    <div class="modal m1">
+      <form id="form1" class="modal__container">
+        <h3>Choisissez le type de questions HTML, CSS,JavaScript ou les 3.</h3>
+        <div class="wrapper">
+          <div>
+            <input type="radio" id="m1-1" name="m1" value="html" checked>
+            <label for="m1-1">HTML</label>
+          </div>
+
+          <div>
+            <input type="radio" id="m1-2" name="m1" value="css">
+            <label for="m1-2">CSS</label>
+          </div>
+
+          <div>
+            <input type="radio" id="m1-3" name="m1" value="js">
+            <label for="m1-3">JavaScript</label>
+          </div>
+          <div>
+            <input type="radio" id="m1-4" name="m1" value="all">
+            <label for="m1-4">Les 3</label>
+          </div>
+        </div>
+
+        <button class="btn">🚀 Valider 🚀</button>
+      </form>
+    </div>
+
+    <div class="modal m2">
+      <form id="form2" class="modal__container">
         <h3>Choisissez le nombre de questions entre 2 et 10.</h3>
         <input type="number" name="numberOfQuestion" id="numberOfQuestion" min="2" max="10" value="2" autofocus>
         <button class="btn">🚀 Valider 🚀</button>
@@ -40,18 +68,18 @@
       <!-- <div class="question-block">
           <h2>Quelle est la fonction JavaScript utilisée pour ajouter un élément à une page web ?</h2>
           <div>
-            <input type="radio" id="q2-1" name="q2" value="a" checked>
-            <label for="q2-1">document.createElement()</label>
+            <input type="radio" id="q1-1" name="q1" value="a" checked>
+            <label for="q1-1">document.createElement()</label>
           </div>
   
           <div>
-            <input type="radio" id="q2-2" name="q2" value="b">
-            <label for="q2-2">document.getElementById()</label>
+            <input type="radio" id="q1-2" name="q1" value="b">
+            <label for="q1-2">document.getElementById()</label>
           </div>
   
           <div>
-            <input type="radio" id="q2-3" name="q2" value="c">
-            <label for="q2-3">document.querySelector()</label>
+            <input type="radio" id="q1-3" name="q1" value="c">
+            <label for="q1-3">document.querySelector()</label>
           </div>
         </div> -->
       <div class="result">

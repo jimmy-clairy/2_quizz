@@ -15,6 +15,7 @@ body {
   font-family: sans-serif;
 }
 
+/* Background */
 .bg {
   position: fixed;
   top: 0;
@@ -83,17 +84,21 @@ h1 span:nth-child(3) {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.modal input {
+.modal.m2,
+.modal.win {
+  display: none;
+}
+
+.m2 input {
   text-align: center;
   font-weight: 700;
+  margin: auto;
 }
 
 .modal__container {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   gap: 2rem;
   border-radius: 5px;
@@ -101,6 +106,11 @@ h1 span:nth-child(3) {
   width: 95%;
   max-width: 60rem;
   padding: 5rem 1rem;
+}
+
+.wrapper {
+  margin: auto;
+  text-align: left;
 }
 
 .modal__X {
@@ -118,10 +128,6 @@ h1 span:nth-child(3) {
 
 .modal__X:hover {
   background-color: #ff3c6a;
-}
-
-.win {
-  display: none;
 }
 
 .main {
