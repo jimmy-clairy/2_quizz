@@ -1,3 +1,9 @@
+/**
+ * Performs an HTTP GET request to fetch JSON data from the specified URL.
+ * @param {string} url - The URL for the GET request.
+ * @returns {Promise} - A promise containing the JSON data from the response.
+ * @throws {Error} - Throws an error if the request fails.
+ */
 async function fetchData(url) {
     const res = await fetch(url)
     if (res.ok) {
@@ -7,12 +13,12 @@ async function fetchData(url) {
 }
 
 /**
- * Returns an array with the question selected
- * @param {string} value 
- * @returns {Promise} Promise object represents questions
+ * Returns an array of selected questions based on the specified value.
+ * @param {string} value - The selected value (html, css, js).
+ * @returns {Promise} - A promise containing the array of questions.
  */
 async function selectedQuestions(value) {
-    let questions = [];
+    let questions = []
 
     if (value === "html") {
         questions = await fetchData("./db/dataHTML.json")
@@ -27,78 +33,86 @@ async function selectedQuestions(value) {
 
         questions = questionsHTML.concat(questionsCSS, questionsJS)
     }
+    console.log(questions.length)
     return questions
 }
 
-/** Create Number Random */
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
-
 /**
- * Show the questions
- * @param {number} numberOfQuestion 
- * @param {Object} questions 
+ * Displays the questions in the form based on the specified number.
+ * @param {number} numberOfQuestion - The number of questions to display.
+ * @param {Object[]} questions - The array of questions.
  */
 function showQuestions(numberOfQuestion, questions) {
     const quizForm = document.getElementById("quiz__form")
 
-    /** Check if number of questions is more to two */
-    if (numberOfQuestion > 1) {
-        const modal = document.querySelector(".modal.m2")
-        modal.style.display = "none"
-
-        const arrayQuestionRandom = []
-        for (let i = 0; i < numberOfQuestion; i++) {
-            let randomQuestion = getRandomInt(questions.length)
-
-            /** Finds if there is the same random question then replaces for an other */
-            const foundSameQuestion = arrayQuestionRandom.find(e => e === randomQuestion)
-            if (foundSameQuestion) {
-                console.log('Found ' + foundSameQuestion);
-                randomQuestion = getRandomInt(questions.length)
-            }
-            arrayQuestionRandom.push(randomQuestion)
-
-            quizForm.append(createQuestion(i, questions[randomQuestion]))
-        }
-        console.log(arrayQuestionRandom);
-
-        /** Reset color background */
-        const radioInputs = document.querySelectorAll('input[type="radio"]')
-        radioInputs.forEach(radioInput => radioInput.addEventListener('input', () => {
-            radioInput.parentNode.parentNode.classList.remove("goodResponse", "wrongResponse")
-        }))
+    // Check if the number of questions is more than two
+    if (numberOfQuestion <= 1) {
+        return
     }
+
+    const modal = document.querySelector(".modal.m2")
+    modal.style.display = "none"
+
+    const arrayQuestionsRandom = []
+    // Generates an array of random questions without duplicates
+    while (arrayQuestionsRandom.length < numberOfQuestion) {
+        const randomQuestion = getRandomInt(questions.length)
+
+        if (!arrayQuestionsRandom.includes(randomQuestion)) {
+            arrayQuestionsRandom.push(randomQuestion)
+            quizForm.append(createQuestion(arrayQuestionsRandom.length - 1, questions[randomQuestion]))
+        }
+    }
+    console.log(arrayQuestionsRandom)
+    resetColor()
 }
 
 /**
- * Create one question
- * @param {number} numberOfTheQuestion 
+ * Generates a random integer between 0 and max.
+ * @param {number} max - The maximum value (exclusive).
+ * @returns {number} - The generated random integer.
+ */
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max)
+}
+
+/**
+ * Resets the colors of the selected responses.
+ */
+function resetColor() {
+    const radioInputs = document.querySelectorAll('input[type="radio"]')
+    radioInputs.forEach(radioInput => radioInput.addEventListener('input', () => {
+        radioInput.parentNode.parentNode.classList.remove("goodResponse", "wrongResponse")
+    }))
+}
+
+/**
+ * Creates an HTML question block from the specified data.
+ * @param {number} numberOfTheQuestion - The question number.
  * @param {{question: string, goodResponse: string, response: Object.<string>}} dataQuestion 
- * @returns {HTMLDivElement}
+ * @returns {HTMLDivElement} - The div element containing the question.
  */
 function createQuestion(numberOfTheQuestion, dataQuestion) {
     const questionBlock = document.createElement("div")
-    questionBlock.setAttribute("class", "question__block")
-    questionBlock.setAttribute("data-response", dataQuestion.goodResponse)
+    questionBlock.classList.add("question__block")
+    questionBlock.dataset.response = dataQuestion.goodResponse
 
     const questionTitle = document.createElement("h2")
-    questionTitle.setAttribute("class", "question__heading")
+    questionTitle.classList.add("question__heading")
     questionTitle.innerText = dataQuestion.question
 
     questionBlock.append(questionTitle)
 
-    /** Create input response */
+    /** Creates input response */
     let numberResponse = 1
     for (const [key, value] of Object.entries(dataQuestion.response)) {
         const responseBlock = document.createElement("div")
 
         const inputResponse = document.createElement("input")
-        inputResponse.setAttribute("type", "radio")
-        inputResponse.setAttribute("id", `q${numberOfTheQuestion}-${numberResponse}`)
-        inputResponse.setAttribute("name", `q${numberOfTheQuestion}`)
-        inputResponse.setAttribute("value", key)
+        inputResponse.type = "radio"
+        inputResponse.id = `q${numberOfTheQuestion}-${key}`
+        inputResponse.name = `q${numberOfTheQuestion}`
+        inputResponse.value = key
         if (numberResponse === 1) {
             inputResponse.setAttribute("checked", "")
         }
@@ -137,13 +151,15 @@ function goodResponses() {
     return responses
 }
 
-/** Compare response */
+/**
+ * Compares the selected responses with the correct responses and displays the result.
+ */
 function compareResponse() {
     const questionBlocks = document.querySelectorAll("#quiz__form .question__block")
     const results = resultQuestion()
     const responses = goodResponses()
 
-    let score = 0;
+    let score = 0
     for (let i = 0; i < results.length; i++) {
 
         if (results[i] === responses[i]) {
@@ -159,9 +175,9 @@ function compareResponse() {
 }
 
 /**
- * Show the result
- * @param {number} score 
- * @param {string[]} responses 
+ * Displays the quiz result with an appropriate message and background color.
+ * @param {number} score - The obtained score.
+ * @param {string[]} responses - The correct responses.
  */
 function showResult(score, responses) {
     const result = document.querySelector('.result')
@@ -192,7 +208,9 @@ function showResult(score, responses) {
     mark.textContent = `${emoji}Vous avez ${score}/${responses.length} bonne reponse${emoji}`
 }
 
-/** Modal if win */
+/**
+ * Displays a modal window in case of victory with the option to play again.
+ */
 function modalWin() {
     const modal = document.querySelector('.modal.win')
     const btnX = modal.querySelector('.modal__X')
@@ -203,12 +221,12 @@ function modalWin() {
     btnReload.addEventListener('click', () => {
         location.reload()
     })
-    modal.style.display = 'flex';
+    modal.style.display = 'flex'
 }
 
 const form1 = document.querySelector('#form1');
 form1.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     /** @constant {string} */
     const selectedValue = document.querySelector('input[name="m1"]:checked').value;
@@ -223,7 +241,7 @@ form1.addEventListener('submit', async (e) => {
         const numberOfQuestion = Number(document.getElementById("numberOfQuestion").value)
         showQuestions(numberOfQuestion, questions)
     })
-});
+})
 
 const form3 = document.getElementById('quiz__form')
 let tentative = 0
@@ -241,3 +259,8 @@ form3.addEventListener('submit', (e) => {
     }
     h3.innerHTML = `😁 Bravo vous avez gagné 😁<br><br>${winString}<br><br>Voulez-vous recommencer un nouveau quiz ?`
 })
+
+// Event listeners and error handling
+window.addEventListener('error', function (event) {
+    console.log('Une erreur est survenue :', event.error)
+});
