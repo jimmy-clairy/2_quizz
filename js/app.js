@@ -38,11 +38,11 @@ async function selectedQuestions(value) {
 }
 
 /**
- * Displays the questions in the form based on the specified number.
+ * Displays questions in the location based on the specified count.
  * @param {number} numberOfQuestion - The number of questions to display.
  * @param {Object[]} questions - The array of questions.
  */
-function showQuestions(numberOfQuestion, questions) {
+function showQuestionsRandom(numberOfQuestion, questions) {
     const quizForm = document.getElementById("quiz__form")
 
     // Check if the number of questions is more than two
@@ -50,9 +50,7 @@ function showQuestions(numberOfQuestion, questions) {
         return
     }
 
-    const modal = document.querySelector(".modal.m2")
-    modal.style.display = "none"
-
+    let numberOfTheQuestion = 1
     const arrayQuestionsRandom = []
     // Generates an array of random questions without duplicates
     while (arrayQuestionsRandom.length < numberOfQuestion) {
@@ -60,10 +58,32 @@ function showQuestions(numberOfQuestion, questions) {
 
         if (!arrayQuestionsRandom.includes(randomQuestion)) {
             arrayQuestionsRandom.push(randomQuestion)
-            quizForm.append(createQuestion(arrayQuestionsRandom.length - 1, questions[randomQuestion]))
+            quizForm.append(createQuestion(numberOfTheQuestion, questions[randomQuestion]))
+            numberOfTheQuestion++
         }
     }
-    console.log(arrayQuestionsRandom)
+
+    const modal = document.querySelector(".modal.m2")
+    modal.style.display = "none"
+
+    resetColor()
+}
+
+/**
+ * Displays all questions in the location.
+ * @param {Object[]} questions - The array of questions. 
+ */
+function showAllQuestion(questions) {
+    const quizForm = document.getElementById("quiz__form")
+    let numberOfTheQuestion = 1
+    for (const question of questions) {
+        quizForm.append(createQuestion(numberOfTheQuestion, question))
+        numberOfTheQuestion++
+    }
+
+    const modal = document.querySelector(".modal.m2")
+    modal.style.display = "none"
+
     resetColor()
 }
 
@@ -97,11 +117,23 @@ function createQuestion(numberOfTheQuestion, dataQuestion) {
     questionBlock.classList.add("question__block")
     questionBlock.dataset.response = dataQuestion.goodResponse
 
+    const bubbleNumber = document.createElement("div")
+    bubbleNumber.classList.add("question__bubble")
+    bubbleNumber.innerText = numberOfTheQuestion
+    if (dataQuestion.type === "html") {
+        bubbleNumber.classList.add("html")
+    } else if (dataQuestion.type === "css") {
+        bubbleNumber.classList.add("css")
+    } else if (dataQuestion.type === "js") {
+        bubbleNumber.classList.add("js")
+    }
+
     const questionTitle = document.createElement("h2")
     questionTitle.classList.add("question__heading")
     questionTitle.innerText = dataQuestion.question
 
-    questionBlock.append(questionTitle)
+    questionBlock.append(
+        bubbleNumber, questionTitle)
 
     /** Creates input response */
     let numberResponse = 1
@@ -158,7 +190,6 @@ function compareResponse() {
     const questionBlocks = document.querySelectorAll("#quiz__form .question__block")
     const results = resultQuestion()
     const responses = goodResponses()
-
     let score = 0
     for (let i = 0; i < results.length; i++) {
 
@@ -233,13 +264,21 @@ form1.addEventListener('submit', async (e) => {
     let questions = await selectedQuestions(selectedValue)
     form1.parentElement.style.display = "none"
 
-    const form2 = document.querySelector('#form2');
+    const form2 = document.querySelector('#form2')
+    const spanAllQuestion = form2.querySelector('#spanAllQuestions')
+    spanAllQuestion.innerText = questions.length
+
     form2.parentElement.style.display = "flex"
 
     form2.addEventListener("submit", (e) => {
         e.preventDefault()
         const numberOfQuestion = Number(document.getElementById("numberOfQuestion").value)
-        showQuestions(numberOfQuestion, questions)
+        const allQuestions = document.querySelector('input[name="allQuestions"]').checked;
+        if (allQuestions) {
+            showAllQuestion(questions)
+        } else {
+            showQuestionsRandom(numberOfQuestion, questions)
+        }
     })
 })
 
