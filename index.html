@@ -16,12 +16,12 @@
   <main class="main">
     <h1>
       Quiz
-      <span>Html</span>, <span>CSS</span> et <span>JS</span>.
+      <span class="html">Html</span>, <span class="css">CSS</span> et <span class="js">JS</span>.
     </h1>
 
     <div class="modal m1">
       <form id="form1" class="modal__container">
-        <h3>Choisissez le type de questions HTML, CSS,JavaScript ou les 3.</h3>
+        <h2>Choisissez le type de questions HTML, CSS, JavaScript ou les 3.</h2>
         <div class="wrapper">
           <div>
             <input type="radio" id="m1-1" name="m1" value="html" checked>
@@ -42,26 +42,25 @@
             <label for="m1-4">Les 3</label>
           </div>
         </div>
-
-        <button class="btn">🚀 Valider 🚀</button>
+        <button class="btn">✅ Valider ✅</button>
       </form>
     </div>
 
     <div class="modal m2">
       <form id="form2" class="modal__container">
-        <h3>Choisissez le nombre de questions entre 2 et 20.</h3>
-        <input type="number" name="numberOfQuestion" id="numberOfQuestion" min="2" max="20" value="2" autofocus>
-        <label class="allQuestions">Toutes les questions <span id="spanAllQuestions"></span>
+        <h2>Choisissez le nombre aléatoire de questions entre 2 et <span class="spanAllQuestions"></span>.</h2>
+        <input type="number" name="numberOfQuestion" id="numberOfQuestion" min="2" value="2" autofocus>
+        <label for="allQuestions" class="allQuestions">Toutes les questions <span class="spanAllQuestions"></span>
           <input type="checkbox" name="allQuestions" id="allQuestions">
         </label>
-        <button class="btn">🚀 Valider 🚀</button>
+        <button class="btn">🚀 C'est parti 🚀</button>
       </form>
     </div>
 
     <div class="modal win">
       <div class="modal__container">
         <div class="modal__X">X</div>
-        <h3></h3>
+        <h2></h2>
         <button class="btn">⭐ Recommencer ⭐</button>
       </div>
     </div>

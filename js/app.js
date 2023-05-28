@@ -33,7 +33,6 @@ async function selectedQuestions(value) {
 
         questions = questionsHTML.concat(questionsCSS, questionsJS)
     }
-    console.log(questions.length)
     return questions
 }
 
@@ -142,7 +141,7 @@ function createQuestion(numberOfTheQuestion, dataQuestion) {
 
         const inputResponse = document.createElement("input")
         inputResponse.type = "radio"
-        inputResponse.id = `q${numberOfTheQuestion}-${key}`
+        inputResponse.id = `q${numberOfTheQuestion}-${numberResponse}`
         inputResponse.name = `q${numberOfTheQuestion}`
         inputResponse.value = key
         if (numberResponse === 1) {
@@ -265,8 +264,11 @@ form1.addEventListener('submit', async (e) => {
     form1.parentElement.style.display = "none"
 
     const form2 = document.querySelector('#form2')
-    const spanAllQuestion = form2.querySelector('#spanAllQuestions')
-    spanAllQuestion.innerText = questions.length
+
+    const spanAllQuestion = form2.querySelectorAll('.spanAllQuestions')
+    spanAllQuestion.forEach(s => s.innerText = questions.length)
+    const numberOfQuestion = document.getElementById("numberOfQuestion")
+    numberOfQuestion.max = questions.length
 
     form2.parentElement.style.display = "flex"
 
