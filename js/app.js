@@ -291,14 +291,14 @@ form3.addEventListener('submit', (e) => {
 
     tentative++
     compareResponse()
-    const h3 = document.querySelector('.modal.win h3')
+    const h2 = document.querySelector('.modal.win h2')
     let winString = ""
     if (tentative === 1) {
         winString = `<span style="color: goldenrod;">🎊 Vous étes un champion 🎊<br>vous avez reussi avec 1 seule tentative</span>`
     } else {
         winString = `<span>😉 Avec ${tentative} tentatives 😉<br> vous pouvez mieux faire</span>`
     }
-    h3.innerHTML = `😁 Bravo vous avez gagné 😁<br><br>${winString}<br><br>Voulez-vous recommencer un nouveau quiz ?`
+    h2.innerHTML = `😁 Bravo vous avez gagné 😁<br><br>${winString}<br><br>Voulez-vous recommencer un nouveau quiz ?`
 })
 
 // Event listeners and error handling
