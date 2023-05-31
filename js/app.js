@@ -21,15 +21,15 @@ async function selectedQuestions(value) {
     let questions = []
 
     if (value === "html") {
-        questions = await fetchData("./db/dataHTML.json")
+        questions = await fetchData("./db/newHTML.json")
     } else if (value === "css") {
-        questions = await fetchData("./db/dataCSS.json")
+        questions = await fetchData("./db/newCSS.json")
     } else if (value === "js") {
-        questions = await fetchData("./db/dataJS.json")
+        questions = await fetchData("./db/newJS.json")
     } else {
-        const questionsHTML = await fetchData("./db/dataHTML.json")
-        const questionsCSS = await fetchData("./db/dataCSS.json")
-        const questionsJS = await fetchData("./db/dataJS.json")
+        const questionsHTML = await fetchData("./db/newHTML.json")
+        const questionsCSS = await fetchData("./db/newCSS.json")
+        const questionsJS = await fetchData("./db/newJS.json")
 
         questions = questionsHTML.concat(questionsCSS, questionsJS)
     }
@@ -108,7 +108,7 @@ function resetColor() {
 /**
  * Creates an HTML question block from the specified data.
  * @param {number} numberOfTheQuestion - The question number.
- * @param {{question: string, goodResponse: string, response: Object.<string>}} dataQuestion 
+ * @param {{question: string, goodResponse: string, response: Object.<string>, linkResponse:string, detailResponse:string}} dataQuestion 
  * @returns {HTMLDivElement} - The div element containing the question.
  */
 function createQuestion(numberOfTheQuestion, dataQuestion) {
@@ -131,8 +131,7 @@ function createQuestion(numberOfTheQuestion, dataQuestion) {
     questionTitle.classList.add("question__heading")
     questionTitle.innerText = dataQuestion.question
 
-    questionBlock.append(
-        bubbleNumber, questionTitle)
+    questionBlock.append(bubbleNumber, questionTitle)
 
     /** Creates input response */
     let numberResponse = 1
@@ -152,11 +151,26 @@ function createQuestion(numberOfTheQuestion, dataQuestion) {
         labelResponse.setAttribute("for", `q${numberOfTheQuestion}-${numberResponse}`)
         labelResponse.innerText = value
 
-        questionBlock.append(responseBlock)
         responseBlock.append(inputResponse, labelResponse)
+        questionBlock.append(responseBlock)
 
         numberResponse++
     }
+
+    // Add details
+    const responseDetail = document.createElement("details")
+    const summary = document.createElement("summary")
+    summary.innerText = "Voir la réponse"
+    const contentDetails = document.createElement("p")
+    contentDetails.innerText = dataQuestion.detailResponse
+    const responseLink = document.createElement("a")
+    responseLink.innerText = "Lien vers le document"
+    responseLink.href = dataQuestion.linkResponse
+    responseLink.target = "_blank"
+    responseLink.rel = "noopener noreferrer"
+    responseDetail.append(summary, contentDetails, responseLink)
+    questionBlock.append(responseDetail)
+
     return questionBlock
 }
 
