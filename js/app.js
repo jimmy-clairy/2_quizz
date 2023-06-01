@@ -21,15 +21,15 @@ async function selectedQuestions(value) {
     let questions = []
 
     if (value === "html") {
-        questions = await fetchData("./db/newHTML.json")
+        questions = await fetchData("./db/HTML.json")
     } else if (value === "css") {
-        questions = await fetchData("./db/newCSS.json")
+        questions = await fetchData("./db/CSS.json")
     } else if (value === "js") {
-        questions = await fetchData("./db/newJS.json")
+        questions = await fetchData("./db/JS.json")
     } else {
-        const questionsHTML = await fetchData("./db/newHTML.json")
-        const questionsCSS = await fetchData("./db/newCSS.json")
-        const questionsJS = await fetchData("./db/newJS.json")
+        const questionsHTML = await fetchData("./db/HTML.json")
+        const questionsCSS = await fetchData("./db/CSS.json")
+        const questionsJS = await fetchData("./db/JS.json")
 
         questions = questionsHTML.concat(questionsCSS, questionsJS)
     }
